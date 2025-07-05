@@ -1,11 +1,12 @@
 import User from '../models/user.model.js';
-import bcryptjs from 'bcryptjs'
-export const signup = async(req, res) => {
+import bcryptjs from 'bcryptjs';
+import { errorHandler } from '../utils/errors.js';
+export const signup = async(req, res, next) => {
    const {username, email, password} = req.body;
 
    if(!username || !email || !password || username === "" || 
        email === "" || password === "") {
-        return res.status(400).json({message: "Tous les champs sont requis"});
+       next(errorHandler(400, "Tous les champs sont requis"))
     }
 
     // S il n'y a pas de message d erreur je vais hasher le mdp
@@ -22,7 +23,7 @@ export const signup = async(req, res) => {
         await newUser.save()
         res.json('Inscription reussie')
      } catch (error) {
-        res.status(500).json({message: error.message})
+        next(error)
      }
 
 }
