@@ -1,8 +1,12 @@
-@import "flowbite/dist/flowbite.css";
-
+ /* @import "flowbite/dist/flowbite.css"; */
+/* @import "flowbite"; */
+@import 'flowbite/dist/flowbite.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
 
 
 button[aria-label="Open main menu"],

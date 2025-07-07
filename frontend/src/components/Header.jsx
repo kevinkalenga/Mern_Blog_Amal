@@ -101,7 +101,7 @@ export default function Header() {
          via-purple-500 to-pink-500 rounded-lg text-white'>
         Blog
       </span>
-      Website
+      Web
     </Link>
     <form>
        <TextInput type='text' 
