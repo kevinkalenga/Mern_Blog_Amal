@@ -64,6 +64,7 @@ export const signup = async(req, res, next) => {
 
 export const signin = async (req, res, next) => {
     const { email, password } = req.body;
+    console.log(req.body)
     if (!email || !password || email === "" || password === "") {
         next(400, "Tous les champs sont requis");
     }
