@@ -4,6 +4,7 @@ import {Alert, Label, TextInput, Spinner, Button } from 'flowbite-react';
 import { useDispatch, useSelector } from "react-redux";
 import { signInstart, signInSuccess, signInFailure } from "../redux/user/userSlice";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import AOuth from '../components/OAuth'
 
 
 export default function SignUp() {
@@ -123,6 +124,7 @@ export default function SignUp() {
                             )
                           }
                       </Button>
+                      <AOuth />
              </div>
 
           </form>
