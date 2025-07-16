@@ -190,16 +190,19 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { FaMoon, FaBars, FaTimes } from 'react-icons/fa';
+import { FaMoon, FaBars, FaTimes, FaSun } from 'react-icons/fa';
 import { Avatar, Button } from 'flowbite-react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleTheme } from '../redux/theme/themeSlice';
 
 export default function Header() {
   const path = useLocation().pathname;
   const navigate = useNavigate();
   const { currentUser } = useSelector(state => state.user);
+  const {theme} = useSelector((state) => state.theme)
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const dispatch = useDispatch()
 
   return (
     <nav className="border-b-2 bg-white dark:bg-gray-900 dark:text-white">
@@ -244,10 +247,12 @@ export default function Header() {
             className="w-10 h-10 hidden sm:flex items-center justify-center"
             color="gray"
             pill
-            onClick={() => alert('Toggle theme')}
+            onClick={() => dispatch(toggleTheme())}
             aria-label="toggle theme"
           >
-            <FaMoon />
+            {
+              theme === 'light'? <FaSun />:<FaMoon />
+            }
           </Button>
 
           {/* User menu or Sign In */}
