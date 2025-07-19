@@ -243,17 +243,14 @@ export default function Header() {
         <div className="flex items-center gap-3 md:order-2">
 
           {/* Theme toggle button */}
-          <Button
-            className="w-10 h-10 hidden sm:flex items-center justify-center"
-            color="gray"
-            pill
-            onClick={() => dispatch(toggleTheme())}
-            aria-label="toggle theme"
-          >
-            {
-              theme === 'light'? <FaSun />:<FaMoon />
-            }
-          </Button>
+          <button
+                        className="p-2 border border-gray-300 rounded-full hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 transition flex items-center justify-center"
+                        color="gray"
+                        onClick={() => dispatch(toggleTheme())}
+                        aria-label="toggle theme"
+                    >
+                        {theme === "light" ? <FaSun /> : <FaMoon />}
+                    </button>
 
           {/* User menu or Sign In */}
           {currentUser ? (
