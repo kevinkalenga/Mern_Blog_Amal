@@ -55,3 +55,15 @@ export const updateUser = async (req, res, next) => {
    
 }
 
+export const deleteUser = async (req, res, next) => {
+    if(req.user.id !== req.params.userId) {
+        return next(errorHandler(403, "Les données incorrecte"))
+    }
+    try {
+        await User.findByIdAndDelete(req.params.user);
+        res.status(200).json("L'utilisateur a été supprimé")
+    } catch (error) {
+         next(error)
+    }
+}
+
