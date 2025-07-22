@@ -61,27 +61,50 @@ export default function DashSidebar() {
   }, [location.search]);
 
   return (
-    <Sidebar className="w-full md:w-56">
-      <SidebarItemGroup>
-        <Link to="/dashboard?tab=profile">
-          <SidebarItem
-            icon={HiUser}
-            label="User"
-            labelColor="dark"
-            active={tab === "profile"}
-          >
-            Profile
-          </SidebarItem>
-        </Link>
-        <SidebarItem
-          icon={HiArrowSmRight}
-          className="cursor-pointer"
-          onClick={() => alert("Déconnexion")}
-        >
-          Déconnexion
-        </SidebarItem>
-      </SidebarItemGroup>
-    </Sidebar>
+    // <Sidebar className="w-full md:w-56">
+    //   <SidebarItemGroup>
+    //     <Link to="/dashboard?tab=profile">
+    //       <SidebarItem
+    //         icon={HiUser}
+    //         label="User"
+    //         labelColor="dark"
+    //         active={tab === "profile"}
+    //       >
+    //         Profile
+    //       </SidebarItem>
+    //     </Link>
+    //     <SidebarItem
+    //       icon={HiArrowSmRight}
+    //       className="cursor-pointer"
+    //       onClick={() => alert("Déconnexion")}
+    //     >
+    //       Déconnexion
+    //     </SidebarItem>
+    //   </SidebarItemGroup>
+    // </Sidebar>
+
+      <Sidebar className="w-full md:w-56">
+            <SidebarItemGroup>
+                <SidebarItem
+                    as={Link}
+                    to="/dashboard?tab=profile"
+                    icon={HiUser}
+                    label="Utilisateur"
+                    labelColor="dark"
+                    active={tab === "profile"}
+                >
+                    Profile
+                </SidebarItem>
+
+                <SidebarItem
+                    icon={HiArrowSmRight}
+                    className="cursor-pointer"
+                    onClick={() => alert("Déconnexion")}
+                >
+                    Déconnexion
+                </SidebarItem>
+            </SidebarItemGroup>
+        </Sidebar>
   );
 }
 
