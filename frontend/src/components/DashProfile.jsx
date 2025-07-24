@@ -5,7 +5,7 @@ import {getStorage, ref, getDownloadURL, uploadBytesResumable} from 'firebase/st
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import {app} from '../firebase'
-import { updateStart, updateSuccess, updateFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure } from "../redux/user/userSlice";
+import { updateStart, updateSuccess, updateFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure, signoutSuccess } from "../redux/user/userSlice";
 import {HiOutlineExclamationCircle} from 'react-icons/hi'
 import { useNavigate, Link } from "react-router-dom";
 
@@ -137,7 +137,21 @@ export default function DashProfile () {
     }
   }
   
-  
+   const handleSignOut = async() => {
+    try {
+      const res = await fetch('/api/user/signout/', {
+         method:'POST',
+      })
+      const data = await res.json();
+       if(!res.ok) {
+        console.log(data.message)
+       } else {
+        dispatch(signoutSuccess())
+       }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
   
   return (
     <div className="max-w-lg mx-auto p-3 w-full">
@@ -216,7 +230,7 @@ export default function DashProfile () {
       </form>
        <div className="flex justify-between text-red-500 mt-5">
          <span className="cursor-pointer" onClick={() => setShowModal(true)}>Supprimer le compte</span>
-         <span className="cursor-pointer">Déconnexion</span>
+         <span onClick={handleSignOut} className="cursor-pointer">Déconnexion</span>
        </div>
         {
           updateUserSuccess && (

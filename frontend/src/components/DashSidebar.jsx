@@ -47,10 +47,12 @@ import { Sidebar, SidebarItem, SidebarItemGroup } from "flowbite-react";
 import { HiArrowSmRight, HiUser } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export default function DashSidebar() {
   const location = useLocation();
   const [tab, setTab] = useState();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -60,28 +62,26 @@ export default function DashSidebar() {
     }
   }, [location.search]);
 
+     
+      const handleSignOut = async() => {
+       try {
+         const res = await fetch('/api/user/signout/', {
+            method:'POST',
+         })
+         const data = await res.json();
+          if(!res.ok) {
+           console.log(data.message)
+          } else {
+           dispatch(signoutSuccess())
+          }
+       } catch (error) {
+         console.log(error.message);
+       }
+     }
+  
+  
   return (
-    // <Sidebar className="w-full md:w-56">
-    //   <SidebarItemGroup>
-    //     <Link to="/dashboard?tab=profile">
-    //       <SidebarItem
-    //         icon={HiUser}
-    //         label="User"
-    //         labelColor="dark"
-    //         active={tab === "profile"}
-    //       >
-    //         Profile
-    //       </SidebarItem>
-    //     </Link>
-    //     <SidebarItem
-    //       icon={HiArrowSmRight}
-    //       className="cursor-pointer"
-    //       onClick={() => alert("Déconnexion")}
-    //     >
-    //       Déconnexion
-    //     </SidebarItem>
-    //   </SidebarItemGroup>
-    // </Sidebar>
+   
 
       <Sidebar className="w-full md:w-56">
             <SidebarItemGroup>
@@ -99,7 +99,7 @@ export default function DashSidebar() {
                 <SidebarItem
                     icon={HiArrowSmRight}
                     className="cursor-pointer"
-                    onClick={() => alert("Déconnexion")}
+                    onClick={handleSignOut}
                 >
                     Déconnexion
                 </SidebarItem>
