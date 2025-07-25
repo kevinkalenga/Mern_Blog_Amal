@@ -13,4 +13,7 @@ export default defineConfig({
     },
   },
    plugins: [react(), flowbiteReact()],
+  optimizeDeps: {
+    include: ['react-quill'],
+  },
 })

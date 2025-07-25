@@ -5,6 +5,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  height: 100vh;
+}
+
+.ql-editor {
+  height: 240px;
+  overflow-y: auto;
+}
+
 
 
 

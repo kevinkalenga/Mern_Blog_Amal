@@ -112,7 +112,7 @@ export default function SignUp() {
 
             {/* ✅ Le bouton dans une div stylée */}
              <div className="bg-white p-4 rounded-md shadow-md">
-                     <Button color="blue" type="submit" disabled={loading}>
+                     <Button className="w-full" color="blue" type="submit" disabled={loading}>
                           {
                             loading ? (
                               <>
@@ -124,7 +124,7 @@ export default function SignUp() {
                             )
                           }
                       </Button>
-                      <AOuth />
+                      <AOuth  />
              </div>
 
           </form>
