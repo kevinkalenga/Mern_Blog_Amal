@@ -143,15 +143,7 @@ export default function CreatePost() {
                 }
          
                 
-                 {/* <ReactQuill
-                     theme="snow"
-                      value={content}
-                      onChange={setContent}
-                     placeholder="Écris quelque chose..."
-                     className="h-72 mb-12"
-                      
-                      
-                /> */}
+                
                   <ReactQuill
                      theme="snow"
                      value={formData.content}
