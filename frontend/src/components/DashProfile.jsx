@@ -278,7 +278,7 @@ export default function DashProfile () {
                         </div>
                     </div>
                 </ModalBody>
-            </Modal>
+      </Modal>
     </div>
   )
 }
