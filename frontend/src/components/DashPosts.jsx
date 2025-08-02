@@ -149,12 +149,14 @@ export default function DashPosts() {
                 <>
                     <Table hoverable className="shadow-md">
                         <TableHead>
+                         <TableRow>
                             <TableHeadCell>Date de Mise à jour</TableHeadCell>
                             <TableHeadCell>Titre</TableHeadCell>
                             <TableHeadCell>Catégorie</TableHeadCell>
                             <TableHeadCell>Image</TableHeadCell>
                             <TableHeadCell>Éditer</TableHeadCell>
                             <TableHeadCell>Supprimer</TableHeadCell>
+                         </TableRow>
                         </TableHead>
                         {
                             userPosts.map((post) => (
