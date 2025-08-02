@@ -56,8 +56,8 @@ export const updateUser = async (req, res, next) => {
 }
 
 export const deleteUser = async (req, res, next) => {
-    if(req.user.id !== req.params.userId) {
-        return next(errorHandler(403, "Les données incorrecte"))
+    if(!req.user.isAdmin && req.user.id !== req.params.userId) {
+        return next(errorHandler(403, "Vous n'etes autorisé à supprimer l'utilisateur"))
     }
     try {
         await User.findByIdAndDelete(req.params.userId);
@@ -111,4 +111,6 @@ export const getUsers = async(req, res, next) => {
          next(error)
     }
 }
+
+
 
