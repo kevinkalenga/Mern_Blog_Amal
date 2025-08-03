@@ -31,7 +31,7 @@ button[aria-label="Close main menu"] {
   padding: 0;
 }
 
-/* à utiliser */
+/* à utiliser si on a quelque chose comme h1 ou p, etc . à l'interieur de post-content */
 .post-content p {
   margin-bottom: 0.5rem;
 }
