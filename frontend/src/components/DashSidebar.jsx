@@ -44,7 +44,7 @@
 // }
 
 import { Sidebar, SidebarItem, SidebarItemGroup } from "flowbite-react";
-import { HiArrowSmRight, HiUser, HiDocumentText, HiOutlineUserGroup } from "react-icons/hi";
+import { HiArrowSmRight, HiUser, HiDocumentText, HiOutlineUserGroup,HiAnnotation } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -124,6 +124,22 @@ export default function DashSidebar() {
                       </Link>
                     )
                   }
+                  {
+                    currentUser.isAdmin && (
+                        <Link to="/dashboard?tab=comments">
+                        <SidebarItem
+                         active={tab === "comments"}
+                         icon={HiAnnotation}
+                         as='div'
+                        >
+                          Commentaires 
+                        </SidebarItem>
+                      </Link>
+                    )
+                  }
+                
+                
+                
                 
                 <SidebarItem
                     icon={HiArrowSmRight}
