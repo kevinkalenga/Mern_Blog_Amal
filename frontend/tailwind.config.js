@@ -64,7 +64,12 @@ module.exports = {
   ],
   
   theme: {
-    extend: {},
+    extend: {
+       colors: {
+        primary: "#1d4ed8",   // exemple bleu
+        secondary: "#9333ea", // exemple violet
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin'),
