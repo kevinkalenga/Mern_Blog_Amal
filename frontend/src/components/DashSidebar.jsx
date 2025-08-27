@@ -44,7 +44,8 @@
 // }
 
 import { Sidebar, SidebarItem, SidebarItemGroup } from "flowbite-react";
-import { HiArrowSmRight, HiUser, HiDocumentText, HiOutlineUserGroup,HiAnnotation } from "react-icons/hi";
+import { HiArrowSmRight, HiUser, HiDocumentText,HiAnnotation, HiChartPie } from "react-icons/hi";
+import {HiOutlineUserGroup} from "react-icons/hi2";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,6 +88,23 @@ export default function DashSidebar() {
 
       <Sidebar className="w-full md:w-56">
             <SidebarItemGroup>
+                  
+                <SidebarItem>
+                    {
+                    currentUser && currentUser.isAdmin && (
+                      <Link to="/dashboard?tab=dash">
+                        <SidebarItem
+                         active={tab === "dash" || !tab}
+                         icon={HiChartPie}
+                         as='div'
+                        >
+                          Dashboard 
+                        </SidebarItem>
+                      </Link>
+                    )
+                  }
+                </SidebarItem>
+                
                 <SidebarItem
                     as={Link}
                     to="/dashboard?tab=profile"
