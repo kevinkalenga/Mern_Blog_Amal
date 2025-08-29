@@ -1,7 +1,7 @@
 
 
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon, FaBars, FaTimes, FaSun } from 'react-icons/fa';
@@ -9,17 +9,29 @@ import { Avatar, Button } from 'flowbite-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toggleTheme } from '../redux/theme/themeSlice';
 import { signoutSuccess } from '../redux/user/userSlice';
+
 // () => {setUserMenuOpen(false);}
 export default function Header() {
   const path = useLocation().pathname;
+  const location = useLocation()
   const navigate = useNavigate();
   const { currentUser } = useSelector(state => state.user);
   const {theme} = useSelector((state) => state.theme)
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('')
   const dispatch = useDispatch()
 
-   const handleSignOut = async() => {
+    useEffect(() => {
+       const urlParams = new URLSearchParams(location.search);
+       const searchTermFromUrl = urlParams.get('searchTerm');
+       if(searchTermFromUrl) {
+         setSearchTerm(searchTermFromUrl)
+       }
+    }, [location.search])
+  
+  
+    const handleSignOut = async() => {
       try {
         const res = await fetch('/api/user/signout/', {
            method:'POST',
@@ -34,6 +46,16 @@ export default function Header() {
         console.log(error.message);
       }
     }
+
+    const handleSubmit = (e) => {
+       e.preventDefault()
+       const urlParams = new URLSearchParams(location.search);
+       urlParams.set('searchTerm', searchTerm);
+       const searchQuery = urlParams.toString();
+       navigate(`/search?${searchQuery}`);
+    }
+
+   
   
   
   
@@ -50,11 +72,12 @@ export default function Header() {
         </Link>
 
         {/* Search bar - hidden on mobile */}
-        <form className="hidden lg:flex items-center border rounded-md overflow-hidden">
+        <form onSubmit={handleSubmit} className="hidden lg:flex items-center border rounded-md overflow-hidden">
           <input
             type="text"
             placeholder="Recherche..."
             className="px-3 py-1 outline-none dark:bg-gray-800 dark:text-white"
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button type="submit" className="px-3 text-gray-600 dark:text-gray-300 hover:text-indigo-500">
             <AiOutlineSearch size={20} />
